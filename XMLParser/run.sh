@@ -21,17 +21,16 @@ option_picked(){
     message=${@:-"${normal}Error: No message passed"}
     printf "${msgcolor}${message}${normal}\n"
 }
+#declare -a filename=("")
 list_file(){
     num=0
-    declare -a filename=()
-    echo "${filename[*]}"
+    filename=("")
     option_picked "Choose $2 !!";
     for i in `ls *.$1 2> ./dump`
     do
         echo "$num.) $i"
-            filename[$num]=$i
-            echo ${filename[0]}
-            #  filename+=($i)
+            #filename[$num]=$i
+            filename+=$i
             num=$(($num+1))
     done
 }
@@ -50,45 +49,61 @@ while [ $opt != '' ]
                 echo "Empty !!"
             else 
                 read file
-                printf "Parsing ${filename[$file]} File !!"
-                `gcc parser.c -lxml2 -o parser`
-                `./parser ${filename[$file]} > "${filename[$file]}.parse"`
-                echo "Parsing Done !!"
+                if [ -z ${filename[$file]} ]; then
+                    echo "File does not exist !!"
+                else 
+                    printf "Parsing ${filename[$file]} File !!"
+                    `gcc parser.c -lxml2 -o parser`
+                    `./parser ${filename[$file]} > "${filename[$file]}.parse"`
+                    echo "Parsing Done !!"
+                fi    
             fi    
             show_menu;
         ;;
         2) clear;
             list_file xml "XML TO BE DISPLAYED"
-            read file 
             if [ -z $filename ]; then
                 echo "Empty !!"
             else     
-                printf "Displaying ${filename[$file]} XML File !!"
-                printf "`cat ${filename[$file]}`"
+                read file 
+                if [ -z ${filename[$file]} ]; then
+                    echo "File does not exist !!"
+                else    
+                    printf "Displaying ${filename[$file]} XML File !!"
+                    printf "`cat ${filename[$file]}`"
+                fi    
             fi    
             show_menu;
         ;;
         3) clear;
             list_file parse "PARSED XML TO BE DISPLAYED"
-            if [ "${#filename[@]}" -ne 0 ]; then
+            if [ -z $filename ]; then
                 echo "Empty.. No files parsed yet !!"
             else
                 read file
-                printf "Displaying ${filename[$file]} XML Parsed File !!"
-                printf "`cat ${filename[$file]}`"
+                if [ -z ${filename[$file]} ]; then
+                    echo "File does not exist !!"
+                else    
+                    printf "Displaying ${filename[$file]} XML Parsed File !!"
+                    printf "`cat ${filename[$file]}`"
+                fi    
             fi 
             show_menu;
         ;;
         4) clear;
             list_file parse "PARSED XML TO SEND TO SERVER"
-            if [ ${#filename[@]} == "0" ]; then
+            if [ -z $filename ]; then
                 echo "Empty.. No files to send !!"
             else
                 read file
-                printf "sending ${filename[$file]} to server";
-                echo
-                printf "`curl -H "Expect:" --data @"${filename[$file]}" 127.0.0.1:8080`";
-                echo
+                if [ -z ${filename[$file]} ]; then
+                    echo "File does not exist !!"
+                else    
+                    printf "sending ${filename[$file]} to server";
+                    echo
+                    printf "`curl -H "Expect:" --data @"${filename[$file]}" 127.0.0.1:8080`";
+                    echo
+                fi    
             fi    
             show_menu;
         ;;
