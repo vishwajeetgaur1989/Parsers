@@ -1,0 +1,67 @@
+<?xml version="1.0" standalone="no" ?>
+<!DOCTYPE document SYSTEM "subjects.dtd">
+<HplmProfile>
+     <opCodes>
+       <opcode value="7,8,38,70"></opcode>
+
+        <prefixMatchLen value="5"></prefixMatchLen>  
+        <ccNccDbValidation value="1"></ccNccDbValidation>  
+        <unmatchAction value="1"></unmatchAction>  
+        <ccndcMatchNotFoundAction value="1"></ccndcMatchNotFoundAction>  
+        <mccMncMatchNotFoundAction value="1"></mccMncMatchNotFoundAction>  
+
+        <useSccpCgpaForMccMncLookUp value="1"></useSccpCgpaForMccMncLookUp>  
+
+        <acn value="4.0.0.1.0.50.1"></acn>
+        <acn value="4.0.0.1.0.50.1"></acn>
+        <IMSI prefixValue="5676"></IMSI>
+        <IMSI prefixValue="1676"></IMSI>
+        <IMSI rangeValue="16767-17676"></IMSI>
+        <IMSI rangeValue="56767-67676"></IMSI>
+        <IMSI exactValue="1676767676"></IMSI>
+        <IMSI exactValue="5676767676"></IMSI>
+
+        <MSISDN prefixValue="9140"></MSISDN>
+        <MSISDN prefixValue="9139"></MSISDN>
+        <MSISDN rangeValue="9145-9157"></MSISDN>
+        <MSISDN rangeValue="9138-9142"></MSISDN>
+        <MSISDN exactValue="913052333938"></MSISDN>
+        <MSISDN exactValue="913051233938"></MSISDN>
+
+        <RoamingPartnerList>
+        <CLGPRTY prefixValue="9101"></CLGPRTY>
+        <CLGPRTY prefixValue="9104"></CLGPRTY>
+        <CLGPRTY rangeValue="9108-9109"></CLGPRTY>
+        <CLGPRTY rangeValue="9110-9111"></CLGPRTY>
+        <CLGPRTY exactValue="9109335725"></CLGPRTY>
+        <CLGPRTY exactValue="9109565656"></CLGPRTY>
+        </RoamingPartnerList>
+
+  </opCodes>
+
+  <opCodes>
+        <opcode value="ALL"></opcode>
+
+        <acn value="4.0.0.1.0.50.0"></acn>
+        <acn value="4.0.0.1.0.50.1"></acn>
+
+
+  </opCodes>
+
+
+<ccNdcBlackList>
+</ccNdcBlackList>
+
+<MccMncBlackList>
+</MccMncBlackList>
+
+<ImsiWhiteList>
+</ImsiWhiteList>
+
+<ImsiBlackList>
+</ImsiBlackList>
+
+<MsisdnWhiteList>
+</MsisdnWhiteList>
+
+</HplmProfile>
